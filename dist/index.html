@@ -2,12 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS Prefetch for potential future resources -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Prefetch critical resources -->
+     <link rel="prefetch" href="data:application/octet-stream;base64,aW1wb3J0IHsgU3RyaWN0TW9kZSB9IGZyb20gJ3JlYWN0JwppbXBvcnQgeyBjcmVhdGVSb290IH0gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcKaW1wb3J0ICcuL2luZGV4LmNzcycKaW1wb3J0IEFwcCBmcm9tICcuL0FwcC50c3gnCgpjb25zdCByb290ID0gY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpISkKCi8vIFVzZSBTdHJpY3RNb2RlIG9ubHkgaW4gZGV2ZWxvcG1lbnQgdG8gYXZvaWQgZG91YmxlLXJlbmRlcmluZyBpbiBwcm9kdWN0aW9uCmlmIChpbXBvcnQubWV0YS5lbnYuREVWKSB7CiAgcm9vdC5yZW5kZXIoCiAgICA8U3RyaWN0TW9kZT4KICAgICAgPEFwcCAvPgogICAgPC9TdHJpY3RNb2RlPiwKICApCn0gZWxzZSB7CiAgcm9vdC5yZW5kZXIoPEFwcCAvPikKfQoKLy8gRW5hYmxlIHNlcnZpY2Ugd29ya2VyIGZvciBiZXR0ZXIgY2FjaGluZyBpbiBwcm9kdWN0aW9uCmlmICgnc2VydmljZVdvcmtlcicgaW4gbmF2aWdhdG9yICYmIGltcG9ydC5tZXRhLmVudi5QUk9EKSB7CiAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ2xvYWQnLCAoKSA9PiB7CiAgICBuYXZpZ2F0b3Iuc2VydmljZVdvcmtlci5yZWdpc3RlcignL3N3LmpzJykuY2F0Y2goKCkgPT4gewogICAgICAvLyBTZXJ2aWNlIHdvcmtlciByZWdpc3RyYXRpb24gZmFpbGVkLCBhcHAgd2lsbCBzdGlsbCB3b3JrCiAgICB9KQogIH0pCn0K">
+    
+    <!-- Resource hints for progressive enhancement -->
+    <link rel="manifest" href="/manifest.json">
+    
     <title>Nexus Digital Agency</title>
-    <script type="module" crossorigin src="./assets/index-02kaPbAe.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Ddeoa_0O.css">
+    
+    <!-- Optimize font loading with font-display: swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+    <!-- Service Worker Registration for offline support -->
+    <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Nexus Digital Agency&quot;,&quot;short_name&quot;:&quot;Nexus&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;}">
+    <script type="module" crossorigin src="./js/index-FB9EAIG7.js"></script>
+    <link rel="modulepreload" crossorigin href="./js/vendor-ByKi_DIr.js">
+    <link rel="modulepreload" crossorigin href="./js/three-CClHls91.js">
+    <link rel="modulepreload" crossorigin href="./js/gsap-ZwAv0AuY.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-KbflePqI.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Register service worker for better caching -->
+    <script>
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Silently fail if service worker registration fails
+          });
+        });
+      }
+    </script>
   </body>
 </html>
