@@ -113,11 +113,11 @@ export default function Portfolio() {
     <section
       ref={sectionRef}
       id="portfolio"
-      className="relative py-20 lg:py-28 bg-white"
+      className="relative py-10 lg:py-14 bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-8">
           <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
             Our Portfolio
           </span>
@@ -134,23 +134,21 @@ export default function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={`portfolio-item group relative rounded-2xl overflow-hidden shadow-soft card-hover ${
-                index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
-              }`}
+              className={`portfolio-item group relative rounded-2xl overflow-hidden shadow-soft card-hover ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''
+                }`}
             >
               {/* Image */}
-              <div className={`relative overflow-hidden img-zoom ${
-                index === 0 ? 'h-64 md:h-80' : 'h-56'
-              }`}>
+              <div className={`relative overflow-hidden img-zoom ${index === 0 ? 'h-64 md:h-80' : 'h-56'
+                }`}>
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                
+
                 {/* Content */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end">
                   <span className="text-maroon text-xs font-semibold uppercase tracking-wider mb-2">
@@ -162,7 +160,7 @@ export default function Portfolio() {
                   <p className="text-white/80 text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
-                  
+
                   {/* Tags & Button */}
                   <div className="flex items-center justify-between">
                     <div className="flex gap-2">

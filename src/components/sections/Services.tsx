@@ -92,11 +92,11 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-20 lg:py-28 bg-gray-50"
+      className="relative py-10 lg:py-14 bg-gray-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-8">
           <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
             Our Services
           </span>
@@ -126,7 +126,7 @@ export default function Services() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                
+
                 {/* Icon badge */}
                 <div className="absolute top-4 left-4 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-soft">
                   <service.icon className="w-6 h-6 text-maroon" />

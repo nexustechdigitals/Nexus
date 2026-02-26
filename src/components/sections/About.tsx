@@ -121,11 +121,11 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-20 lg:py-28 bg-gray-50"
+      className="relative py-10 lg:py-14 bg-gray-50"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-8">
           <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
             About Us
           </span>
@@ -135,7 +135,7 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+        <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-10">
           {/* Left - Text Content */}
           <div>
             <h3 className="animate-item font-display text-2xl md:text-3xl font-bold text-gray-900 mb-6">
@@ -174,8 +174,8 @@ export default function About() {
             <div className="relative aspect-square max-w-md mx-auto">
               {/* Main image */}
               <div className="relative bg-white rounded-2xl shadow-soft-lg p-6 overflow-hidden">
-                <img 
-                  src="/portfolio/portfolio-1.png" 
+                <img
+                  src="/portfolio/portfolio-1.png"
                   alt="Our Work"
                   className="w-full h-full object-cover rounded-xl"
                 />
@@ -195,7 +195,7 @@ export default function About() {
         {/* Stats */}
         <div
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10"
         >
           {stats.map((stat, index) => (
             <div

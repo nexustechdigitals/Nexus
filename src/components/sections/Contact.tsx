@@ -118,11 +118,11 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-20 lg:py-28 bg-white"
+      className="relative py-10 lg:py-14 bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-8">
           <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
             Get In Touch
           </span>
@@ -257,10 +257,10 @@ export default function Contact() {
               </div>
               <h4 className="font-display text-lg font-semibold text-gray-900 mb-1">Email Us</h4>
               <a
-                href="mailto:hello@nexusagency.com"
+                href="mailto:nexus.techdigitals@gmail.com"
                 className="text-gray-600 hover:text-maroon transition-colors"
               >
-                hello@nexusagency.com
+                nexus.techdigitals@gmail.com
               </a>
             </div>
 
@@ -270,12 +270,20 @@ export default function Contact() {
                 <Phone className="w-6 h-6 text-maroon" />
               </div>
               <h4 className="font-display text-lg font-semibold text-gray-900 mb-1">Call Us</h4>
-              <a
-                href="tel:+1234567890"
-                className="text-gray-600 hover:text-maroon transition-colors"
-              >
-                +1 (234) 567-890
-              </a>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="tel:+917498593746"
+                  className="text-gray-600 hover:text-maroon transition-colors"
+                >
+                  +91 7498593746
+                </a>
+                <a
+                  href="tel:+918530220576"
+                  className="text-gray-600 hover:text-maroon transition-colors"
+                >
+                  +91 8530220576
+                </a>
+              </div>
             </div>
 
             {/* Location */}
@@ -285,8 +293,8 @@ export default function Contact() {
               </div>
               <h4 className="font-display text-lg font-semibold text-gray-900 mb-1">Visit Us</h4>
               <p className="text-gray-600">
-                123 Digital Street<br />
-                Tech City, TC 12345
+                Near Shiv Sena Office, Shiv Mandir Road,<br />
+                Dhaniv Baug, Nallasopara (East)
               </p>
             </div>
 

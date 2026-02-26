@@ -116,7 +116,7 @@ export default function FAQ() {
         <section
             ref={sectionRef}
             id="faq"
-            className="relative py-20 lg:py-28 bg-white overflow-hidden"
+            className="relative py-10 lg:py-14 bg-white overflow-hidden"
         >
             {/* Subtle background accents */}
             <div className="absolute inset-0 pointer-events-none">
@@ -129,7 +129,7 @@ export default function FAQ() {
 
             <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-14">
+                <div ref={headerRef} className="text-center mb-8">
                     <span className="hdr-item inline-block text-maroon text-xs font-bold tracking-[0.3em] uppercase mb-4">
                         FAQ
                     </span>
@@ -148,8 +148,8 @@ export default function FAQ() {
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
                             className={`px-4 py-1.5 text-xs font-semibold rounded-full border transition-all duration-300 ${activeCategory === cat
-                                    ? 'bg-maroon text-white border-maroon shadow-maroon'
-                                    : 'bg-white text-gray-500 border-gray-200 hover:border-maroon hover:text-maroon'
+                                ? 'bg-maroon text-white border-maroon shadow-maroon'
+                                : 'bg-white text-gray-500 border-gray-200 hover:border-maroon hover:text-maroon'
                                 }`}
                         >
                             {cat}
@@ -191,8 +191,8 @@ export default function FAQ() {
 
                                     <div
                                         className={`flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full border transition-all duration-300 mt-0.5 ${isOpen
-                                                ? 'bg-maroon border-maroon text-white'
-                                                : 'bg-white border-gray-200 text-gray-400 group-hover:border-maroon group-hover:text-maroon'
+                                            ? 'bg-maroon border-maroon text-white'
+                                            : 'bg-white border-gray-200 text-gray-400 group-hover:border-maroon group-hover:text-maroon'
                                             }`}
                                     >
                                         {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}

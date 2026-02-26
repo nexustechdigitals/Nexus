@@ -4,9 +4,9 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
+  { name: 'About', href: '#about' },
   { name: 'Services', href: '#services' },
   { name: 'Portfolio', href: '#portfolio' },
-  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -80,8 +80,8 @@ export default function Navigation() {
         >
           <div
             className={`flex items-center justify-between transition-all duration-500 ${isScrolled
-                ? 'bg-white/97 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.10)] px-6 sm:px-10 py-3.5 rounded-none'
-                : 'bg-black/30 backdrop-blur-md border border-white/10 px-6 py-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
+              ? 'bg-white/97 backdrop-blur-xl shadow-[0_1px_0_0_rgba(0,0,0,0.08),0_8px_32px_rgba(0,0,0,0.10)] px-6 sm:px-10 py-3.5 rounded-none'
+              : 'bg-black/30 backdrop-blur-md border border-white/10 px-6 py-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)]'
               }`}
           >
             {/* Logo */}
@@ -115,12 +115,12 @@ export default function Navigation() {
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
                     className={`relative px-4 py-2.5 text-[13px] font-medium rounded-lg transition-all duration-300 group overflow-hidden ${isActive
-                        ? isScrolled
-                          ? 'text-maroon'
-                          : 'text-white'
-                        : isScrolled
-                          ? 'text-gray-500 hover:text-gray-900'
-                          : 'text-white/70 hover:text-white'
+                      ? isScrolled
+                        ? 'text-maroon'
+                        : 'text-white'
+                      : isScrolled
+                        ? 'text-gray-500 hover:text-gray-900'
+                        : 'text-white/70 hover:text-white'
                       }`}
                   >
                     {link.name}
@@ -142,8 +142,8 @@ export default function Navigation() {
                 href="#contact"
                 onClick={(e) => handleLinkClick(e, '#contact')}
                 className={`relative overflow-hidden px-5 py-2.5 text-[13px] font-semibold rounded-xl transition-all duration-300 flex items-center gap-1.5 group ${isScrolled
-                    ? 'bg-maroon text-white hover:bg-maroon-dark shadow-maroon'
-                    : 'bg-white text-maroon hover:bg-white/90'
+                  ? 'bg-maroon text-white hover:bg-maroon-dark shadow-maroon'
+                  : 'bg-white text-maroon hover:bg-white/90'
                   }`}
               >
                 Get Started
@@ -212,8 +212,8 @@ export default function Navigation() {
                   href={link.href}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   className={`relative flex items-center px-4 py-3.5 rounded-xl text-[15px] font-medium transition-all duration-200 overflow-hidden ${isActive
-                      ? 'text-maroon bg-maroon/6'
-                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                    ? 'text-maroon bg-maroon/6'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                     }`}
                 >
                   {/* Active line on left edge */}

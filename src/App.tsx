@@ -47,58 +47,42 @@ function App() {
       <main className="relative">
         {/* 1. Hero */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="hero">
-            <Hero />
-          </section>
+          <Hero />
         </Suspense>
 
         {/* 2. Who We Are (About) */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="about">
-            <About />
-          </section>
+          <About />
         </Suspense>
 
         {/* 3. What We Offer (Services) */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="services">
-            <Services />
-          </section>
+          <Services />
         </Suspense>
 
         {/* 4. How It Works */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="how-it-works">
-            <HowItWorks />
-          </section>
+          <HowItWorks />
         </Suspense>
 
         {/* 5. Featured Projects (Portfolio) */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="portfolio">
-            <Portfolio />
-          </section>
+          <Portfolio />
         </Suspense>
 
         {/* 6. Testimonials */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="testimonials">
-            <Testimonials />
-          </section>
+          <Testimonials />
         </Suspense>
 
         {/* 7. FAQ */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="faq">
-            <FAQ />
-          </section>
+          <FAQ />
         </Suspense>
 
         {/* Contact */}
         <Suspense fallback={<SectionFallback />}>
-          <section id="contact">
-            <Contact />
-          </section>
+          <Contact />
         </Suspense>
 
         <Suspense fallback={null}>

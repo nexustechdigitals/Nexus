@@ -81,11 +81,11 @@ export default function HowItWorks() {
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="relative py-20 lg:py-28 bg-white"
+      className="relative py-10 lg:py-14 bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-16">
+        <div ref={titleRef} className="text-center mb-8">
           <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
             Our Process
           </span>
