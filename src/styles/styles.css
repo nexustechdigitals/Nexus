@@ -1,0 +1,429 @@
+/* Font loading is handled in index.html with display=swap for better performance */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Maroon Red Theme - Light */
+    --maroon: #991b1b;
+    --maroon-light: #b91c1c;
+    --maroon-dark: #7f1d1d;
+    --maroon-50: #fef2f2;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 350 75% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 350 75% 35%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 350 75% 35%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-gray-900 antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #991b1b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7f1d1d;
+}
+
+/* Selection */
+::selection {
+  background: #991b1b;
+  color: white;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid #991b1b;
+  outline-offset: 2px;
+}
+
+/* Primary button */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#991b1b] text-white font-medium rounded-full;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #7f1d1d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(153, 27, 27, 0.3);
+}
+
+/* Secondary button */
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#991b1b] text-[#991b1b] font-medium rounded-full bg-transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #991b1b;
+  color: white;
+}
+
+/* Section title underline */
+.section-title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: #991b1b;
+  border-radius: 2px;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* Quote styling for testimonials */
+.quote-icon {
+  font-size: 4rem;
+  line-height: 1;
+  color: #991b1b;
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+/* Star rating */
+.star-filled {
+  color: #991b1b;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Soft shadow */
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Maroon glow */
+.maroon-glow {
+  box-shadow: 0 0 40px rgba(153, 27, 27, 0.2);
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Stagger delays */
+.stagger-1 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Loading screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.25rem !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: 1.875rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Testimonial card like reference */
+.testimonial-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Testimonial auto-scrolling carousel - infinite smooth scroll for 3 cards at a time */
+@keyframes testimonial-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-track {
+  animation: testimonial-scroll 35s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+/* Testimonial slide */
+.testimonial-slide {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.testimonial-slide:hover {
+  transform: translateY(-4px);
+}
+
+/* Service card with image */
+.service-card-img {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Badge */
+.badge {
+  @apply inline-flex items-center px-3 py-1 text-xs font-medium rounded-full;
+}
+
+.badge-maroon {
+  @apply bg-[#991b1b]/10 text-[#991b1b];
+}
+
+/* Navigation link underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #991b1b;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}

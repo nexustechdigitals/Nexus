@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+    
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS Prefetch for potential future resources -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    
+    <!-- Prefetch critical resources -->
+    <link rel="prefetch" href="/src/components" as="fetch" crossorigin>
+    
+    <!-- Resource hints for progressive enhancement -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <title>Nexus Digital Agency</title>
+    
+    <!-- Optimize font loading with font-display: swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    
+    <!-- Service Worker Registration for offline support -->
+    <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Nexus Digital Agency&quot;,&quot;short_name&quot;:&quot;Nexus&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;}">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Register service worker for better caching -->
+    <script>
+      if ('serviceWorker' in navigator && location.protocol === 'https:') {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {
+            // Silently fail if service worker registration fails
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
