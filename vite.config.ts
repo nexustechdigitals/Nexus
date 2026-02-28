@@ -23,14 +23,7 @@ export default defineConfig({
   },
   build: {
     // Optimize build performance
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-      mangle: true,
-    },
+    minify: 'esbuild',
     // Code splitting strategy
     rollupOptions: {
       output: {
