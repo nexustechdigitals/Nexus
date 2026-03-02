@@ -5,13 +5,6 @@ import { Target, Lightbulb, Users, Code2, Palette } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const stats = [
-  { value: '150+', label: 'Projects Completed' },
-  { value: '50+', label: 'Happy Clients' },
-  { value: '5+', label: 'Years Experience' },
-  { value: '25+', label: 'Design Awards' },
-];
-
 const values = [
   {
     icon: Target,
@@ -34,16 +27,14 @@ export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
   const valuesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
     const content = contentRef.current;
-    const stats = statsRef.current;
     const values = valuesRef.current;
-    if (!section || !title || !content || !stats || !values) return;
+    if (!section || !title || !content || !values) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -73,24 +64,6 @@ export default function About() {
           scrollTrigger: {
             trigger: content,
             start: 'top 75%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      const statElements = stats.querySelectorAll('.stat-item');
-      gsap.fromTo(
-        statElements,
-        { y: 30, opacity: 0, scale: 0.9 },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: stats,
-            start: 'top 80%',
             toggleActions: 'play none none reverse',
           },
         }
@@ -192,26 +165,8 @@ export default function About() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div
-          ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10"
-        >
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="stat-item p-6 bg-white rounded-2xl shadow-soft text-center hover:shadow-soft-lg transition-shadow duration-300"
-            >
-              <div className="font-display text-3xl md:text-4xl font-bold text-maroon mb-1">
-                {stat.value}
-              </div>
-              <div className="text-gray-500 text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
         {/* Values */}
-        <div ref={valuesRef} className="grid md:grid-cols-3 gap-6">
+        <div ref={valuesRef} className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {values.map((value, index) => (
             <div
               key={index}

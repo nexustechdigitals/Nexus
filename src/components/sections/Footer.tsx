@@ -165,33 +165,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="animate-item p-6 md:p-8 bg-gray-800 rounded-2xl mb-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="font-display text-xl font-semibold text-white mb-2">
-                Subscribe to Our Newsletter
-              </h4>
-              <p className="text-gray-400 text-sm">
-                Get the latest updates and insights delivered to your inbox.
-              </p>
-            </div>
-            <form className="flex w-full md:w-auto gap-3" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 bg-gray-700 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-maroon focus:outline-none transition-colors"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-maroon text-white font-medium rounded-xl hover:bg-maroon-dark transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </div>
-
         {/* Bottom Bar */}
         <div className="animate-item flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-800">
           <p className="text-gray-500 text-sm text-center md:text-left">
