@@ -19,7 +19,7 @@ const services: Service[] = [
     icon: Monitor,
     title: 'Website Development',
     description: 'Custom websites tailored to your brand and business goals.',
-    image: '/portfolio/portfolio-1.png',
+    image: '/portfolio/portfolio-1.jpg',
     features: ['Responsive Design', 'SEO Optimized', 'Fast Loading'],
   },
 
@@ -27,7 +27,7 @@ const services: Service[] = [
     icon: Smartphone,
     title: 'App Development',
     description: 'Native and cross-platform mobile applications.',
-    image: '/portfolio/portfolio-3.png',
+    image: '/portfolio/portfolio-2.jpg',
     features: ['iOS & Android', 'User Friendly', 'Scalable'],
   },
 
@@ -35,7 +35,7 @@ const services: Service[] = [
     icon: Palette,
     title: 'Graphic Designing',
     description: 'Stunning visuals that capture attention and communicate.',
-    image: '/portfolio/portfolio-2.png',
+    image: '/portfolio/portfolio-3.jpg',
     features: ['Brand Identity', 'Social Media', 'Marketing'],
   },
 ];
