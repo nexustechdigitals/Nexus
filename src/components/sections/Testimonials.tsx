@@ -80,51 +80,86 @@ export default function Testimonials() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Responsive: 3 cards on lg+, 2 on sm+, 1 on mobile
+  const [cardsPerView, setCardsPerView] = useState(() => {
+    if (typeof window === 'undefined') return 3;
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 640) return 2;
+    return 1;
+  });
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setCardsPerView(3);
+      else if (window.innerWidth >= 640) setCardsPerView(2);
+      else setCardsPerView(1);
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   const total = testimonials.length;
+  // Max position so last visible pair/single doesn't overshoot
+  const maxCurrent = Math.max(0, total - cardsPerView);
+  // Width of each card as percentage and translate step
+  const cardWidthPct = 100 / cardsPerView;
+  const translatePct = current * cardWidthPct;
 
   const goTo = useCallback((index: number) => {
-    const next = (index + total) % total;
-    setCurrent(next);
-  }, [total]);
+    setCurrent(Math.max(0, Math.min(index, maxCurrent)));
+  }, [maxCurrent]);
 
-  const next = useCallback(() => goTo(current + 1), [current, goTo]);
-  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
+  const next = useCallback(() => {
+    setCurrent(c => (c < maxCurrent ? c + 1 : 0));
+  }, [maxCurrent]);
+
+  const prev = useCallback(() => {
+    setCurrent(c => (c > 0 ? c - 1 : maxCurrent));
+  }, [maxCurrent]);
 
   // Auto-slide every 4 s
   useEffect(() => {
     if (isPaused) return;
     autoRef.current = setInterval(() => {
-      setCurrent((c) => (c + 1) % total);
+      setCurrent(c => (c < maxCurrent ? c + 1 : 0));
     }, 4000);
     return () => { if (autoRef.current) clearInterval(autoRef.current); };
-  }, [isPaused, total]);
+  }, [isPaused, maxCurrent]);
 
   // Entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current.querySelectorAll('.hdr-item'),
-          { y: 40, opacity: 0 },
-          {
-            y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-            scrollTrigger: { trigger: headerRef.current, start: 'top 82%', toggleActions: 'play none none reverse' },
-          }
-        );
-      }
-      if (trackRef.current) {
-        gsap.fromTo(
-          trackRef.current,
-          { y: 50, opacity: 0 },
-          {
-            y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { trigger: trackRef.current, start: 'top 82%', toggleActions: 'play none none reverse' },
-          }
-        );
-      }
+      gsap.fromTo(
+        '.hdr-item',
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      );
+      gsap.fromTo(
+        trackRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: {
+            trigger: trackRef.current,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
+
 
   return (
     <section
@@ -167,7 +202,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* Carousel — 2 cards at a time on sm+, 1 on mobile */}
         <div
           ref={trackRef}
           className="relative"
@@ -178,58 +213,59 @@ export default function Testimonials() {
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${current * 100}%)` }}
+              style={{ transform: `translateX(-${translatePct}%)` }}
             >
               {testimonials.map((t) => (
                 <div
                   key={t.id}
-                  className="w-full flex-shrink-0 px-4 sm:px-12 md:px-24 lg:px-40"
+                  className="flex-shrink-0 px-2"
+                  style={{ width: `${cardWidthPct}%` }}
                 >
-                  <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.07)] overflow-hidden mx-auto max-w-2xl">
+                  <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.07)] overflow-hidden h-full flex flex-col">
                     {/* Top accent line */}
-                    <div className="h-1 bg-gradient-to-r from-maroon via-red-400 to-maroon" />
+                    <div className="h-1 bg-gradient-to-r from-maroon via-red-400 to-maroon flex-shrink-0" />
 
-                    <div className="flex flex-col sm:flex-row gap-0">
-                      {/* Avatar side */}
+                    <div className="flex flex-col items-center p-5 flex-1">
+                      {/* Avatar */}
                       <div
-                        className="sm:w-36 flex-shrink-0 flex items-end justify-center pt-6 pb-0 sm:pb-6 px-6"
+                        className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 mb-3 ring-2 ring-maroon/10"
                         style={{ background: 'linear-gradient(160deg, #fef2f2 0%, #fff5f5 100%)' }}
                       >
                         <img
                           src={t.image}
                           alt={t.name}
-                          className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow"
+                          className="w-full h-full object-contain"
                         />
                       </div>
 
-                      {/* Content */}
-                      <div className="flex-1 px-5 py-5">
-                        {/* Stars */}
-                        <div className="flex items-center gap-0.5 mb-3">
-                          {Array.from({ length: t.rating }).map((_, i) => (
-                            <Star key={i} className="w-3.5 h-3.5 fill-maroon text-maroon" />
-                          ))}
+                      {/* Stars */}
+                      <div className="flex items-center gap-0.5 mb-3">
+                        {Array.from({ length: t.rating }).map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-maroon text-maroon" />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <p className="text-gray-600 text-xs leading-relaxed text-center line-clamp-4 flex-1">
+                        &ldquo;{t.content}&rdquo;
+                      </p>
+
+                      {/* Divider */}
+                      <div className="w-full h-px bg-gray-100 my-3" />
+
+                      {/* Footer: name + metric */}
+                      <div className="w-full flex items-center justify-between">
+                        <div>
+                          <p className="font-display text-[11px] font-bold text-gray-900 uppercase tracking-wider leading-none">
+                            {t.name}
+                          </p>
+                          <p className="text-[10px] text-maroon font-semibold mt-0.5">
+                            {t.role} · {t.company}
+                          </p>
                         </div>
-
-                        {/* Quote */}
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                          "{t.content}"
-                        </p>
-
-                        {/* Footer */}
-                        <div className="flex items-end justify-between border-t border-gray-100 pt-3">
-                          <div>
-                            <p className="font-display text-xs font-bold text-gray-900 uppercase tracking-widest">
-                              {t.name}
-                            </p>
-                            <p className="text-[11px] text-maroon font-semibold mt-0.5">
-                              {t.role} · {t.company}
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <p className="font-display text-2xl font-black text-maroon leading-none">{t.metric}</p>
-                            <p className="text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">{t.metricLabel}</p>
-                          </div>
+                        <div className="text-right">
+                          <p className="font-display text-lg font-black text-maroon leading-none">{t.metric}</p>
+                          <p className="text-[8px] text-gray-400 uppercase tracking-wider mt-0.5">{t.metricLabel}</p>
                         </div>
                       </div>
                     </div>
@@ -243,29 +279,29 @@ export default function Testimonials() {
           <button
             onClick={prev}
             aria-label="Previous testimonial"
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-maroon hover:border-maroon transition-all duration-200 z-10"
+            className="absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-maroon hover:border-maroon transition-all duration-200 z-10"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={next}
             aria-label="Next testimonial"
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-maroon hover:border-maroon transition-all duration-200 z-10"
+            className="absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm text-gray-500 hover:text-maroon hover:border-maroon transition-all duration-200 z-10"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Dot nav */}
+        {/* Dot nav — represents each slide position */}
         <div className="flex items-center justify-center gap-2 mt-6">
-          {testimonials.map((_, i) => (
+          {Array.from({ length: maxCurrent + 1 }).map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Testimonial ${i + 1}`}
+              aria-label={`Position ${i + 1}`}
               className={`transition-all duration-300 rounded-full ${i === current
-                  ? 'w-6 h-1.5 bg-maroon'
-                  : 'w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400'
+                ? 'w-6 h-1.5 bg-maroon'
+                : 'w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400'
                 }`}
             />
           ))}

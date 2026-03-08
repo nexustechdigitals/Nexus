@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Monitor, Palette, Smartphone, ArrowUpRight } from 'lucide-react';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface Service {
@@ -21,19 +22,21 @@ const services: Service[] = [
     image: '/portfolio/portfolio-1.png',
     features: ['Responsive Design', 'SEO Optimized', 'Fast Loading'],
   },
-  {
-    icon: Palette,
-    title: 'Graphic Designing',
-    description: 'Stunning visuals that capture attention and communicate.',
-    image: '/portfolio/portfolio-2.png',
-    features: ['Brand Identity', 'Social Media', 'Marketing'],
-  },
+
   {
     icon: Smartphone,
     title: 'App Development',
     description: 'Native and cross-platform mobile applications.',
     image: '/portfolio/portfolio-3.png',
     features: ['iOS & Android', 'User Friendly', 'Scalable'],
+  },
+
+  {
+    icon: Palette,
+    title: 'Graphic Designing',
+    description: 'Stunning visuals that capture attention and communicate.',
+    image: '/portfolio/portfolio-2.png',
+    features: ['Brand Identity', 'Social Media', 'Marketing'],
   },
 ];
 
@@ -111,7 +114,7 @@ export default function Services() {
         {/* Service Cards */}
         <div
           ref={cardsRef}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {services.map((service, index) => (
             <div
@@ -119,7 +122,7 @@ export default function Services() {
               className="service-card group bg-white rounded-2xl overflow-hidden shadow-soft card-hover"
             >
               {/* Image */}
-              <div className="relative h-48 overflow-hidden img-zoom">
+              <div className="relative h-40 sm:h-48 overflow-hidden img-zoom">
                 <img
                   src={service.image}
                   alt={service.title}

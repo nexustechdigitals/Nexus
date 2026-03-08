@@ -108,15 +108,15 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-10">
+        <div ref={contentRef} className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-10">
           {/* Left - Text Content */}
           <div>
             <h3 className="animate-item font-display text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-              Crafting Digital Excellence Since 2019
+              Crafting Digital Excellence Since 2025
             </h3>
             <div className="animate-item space-y-4 text-gray-600 leading-relaxed">
               <p>
-                Nexus Digital Agency is a full-service digital solutions provider dedicated to
+                Nexus Tech Digitals is a full-service digital solutions provider dedicated to
                 helping businesses thrive in the digital age. We combine creativity with
                 technical expertise to deliver exceptional results.
               </p>
@@ -143,7 +143,7 @@ export default function About() {
           </div>
 
           {/* Right - Visual */}
-          <div className="animate-item relative">
+          <div className="animate-item relative hidden lg:block">
             <div className="relative aspect-square max-w-md mx-auto">
               {/* Main image */}
               <div className="relative bg-white rounded-2xl shadow-soft-lg p-6 overflow-hidden">
@@ -166,7 +166,7 @@ export default function About() {
         </div>
 
         {/* Values */}
-        <div ref={valuesRef} className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div ref={valuesRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {values.map((value, index) => (
             <div
               key={index}

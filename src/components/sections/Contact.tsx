@@ -134,7 +134,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Contact Form */}
           <form
             ref={formRef}
@@ -155,7 +155,7 @@ export default function Contact() {
               </div>
             ) : (
               <>
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
                   {/* Name */}
                   <div>
                     <label className="block text-gray-700 text-sm font-medium mb-2">

@@ -23,13 +23,13 @@ const faqs: FAQItem[] = [
         id: 2,
         category: 'Timeline',
         question: 'How long does it take to build a website or app?',
-        answer: `Timelines vary based on project scope. A standard marketing website typically takes 3–5 weeks. A full-featured web application or e-commerce platform ranges from 6–12 weeks. We'll give you a precise timeline after our initial discovery call once we fully understand your requirements.`,
+        answer: `Timelines vary based on project scope. A standard marketing website typically takes 1–2 weeks. A full-featured web application or e-commerce platform ranges from 3–5 weeks. We'll give you a precise timeline after our initial discovery call once we fully understand your requirements.`,
     },
     {
         id: 3,
         category: 'Pricing',
         question: 'What does a typical project cost?',
-        answer: `Every project is scoped individually, so we don't publish fixed prices. Simple websites start from a few thousand dollars, while complex applications scale up based on features, integrations, and design complexity. We provide a detailed, itemized quote after the discovery phase — no hidden fees.`,
+        answer: `The cost of a typical project depends on the **scope, complexity, and specific requirements** of the client. Every project is different, so we usually start by understanding the business goals and features needed. Based on that, we provide a tailored proposal that fits the client’s needs and timeline.`,
     },
     {
         id: 4,
