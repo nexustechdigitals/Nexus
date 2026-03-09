@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Monitor, Palette, Smartphone, ArrowUpRight } from 'lucide-react';
-
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,7 +9,7 @@ interface Service {
   icon: React.ElementType;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   features: string[];
 }
 
@@ -19,26 +18,118 @@ const services: Service[] = [
     icon: Monitor,
     title: 'Website Development',
     description: 'Custom websites tailored to your brand and business goals.',
-    image: '/portfolio/portfolio-1.jpg',
+    images: ['/portfolio/portfolio-1.jpg', '/portfolio/portfolio-1.1.jpg'],
     features: ['Responsive Design', 'SEO Optimized', 'Fast Loading'],
   },
-
   {
     icon: Smartphone,
     title: 'App Development',
     description: 'Native and cross-platform mobile applications.',
-    image: '/portfolio/portfolio-2.jpg',
+    images: ['/portfolio/portfolio-2.jpg', '/portfolio/portfolio-2.1.jpg'],
     features: ['iOS & Android', 'User Friendly', 'Scalable'],
   },
-
   {
     icon: Palette,
     title: 'Graphic Designing',
     description: 'Stunning visuals that capture attention and communicate.',
-    image: '/portfolio/portfolio-3.jpg',
+    images: ['/portfolio/portfolio-3.jpg', '/portfolio/portfolio-3.1.jpg'],
     features: ['Brand Identity', 'Social Media', 'Marketing'],
   },
 ];
+
+/** A single service card with cross-fading image cycling */
+function ServiceCard({ service, index }: { service: Service; index: number }) {
+  const [activeImg, setActiveImg] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Cycle through images every 3 s
+  useEffect(() => {
+    if (service.images.length < 2) return;
+    intervalRef.current = setInterval(() => {
+      setActiveImg(prev => (prev + 1) % service.images.length);
+    }, 3000 + index * 600); // stagger start so cards don't all switch at once
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [service.images.length, index]);
+
+  return (
+    <div className="service-card group relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 transition-transform duration-300 hover:-translate-y-1">
+      {/* Image area with cross-fade */}
+      <div className="relative h-52 sm:h-56 overflow-hidden">
+        {service.images.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={service.title}
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-1000"
+            style={{
+              opacity: i === activeImg ? 1 : 0,
+              transform: i === activeImg ? 'scale(1.07)' : 'scale(1)',
+            }}
+            loading="lazy"
+          />
+        ))}
+
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+        {/* Icon badge */}
+        <div className="absolute top-4 left-4 w-11 h-11 rounded-xl flex items-center justify-center shadow-lg" style={{ background: 'rgba(153,27,27,0.92)', backdropFilter: 'blur(8px)' }}>
+          <service.icon className="w-5 h-5 text-white" />
+        </div>
+
+        {/* Arrow button */}
+        <div className="absolute bottom-4 right-4 w-9 h-9 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md">
+          <ArrowUpRight className="w-4 h-4 text-maroon" />
+        </div>
+
+        {/* Image dots */}
+        {service.images.length > 1 && (
+          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+            {service.images.map((_, i) => (
+              <span
+                key={i}
+                className="block rounded-full transition-all duration-500"
+                style={{
+                  width: i === activeImg ? '18px' : '5px',
+                  height: '5px',
+                  background: i === activeImg ? '#fff' : 'rgba(255,255,255,0.45)',
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Content — dark card body */}
+      <div
+        className="p-6"
+        style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' }}
+      >
+        <h3 className="font-display text-lg font-semibold text-white mb-2 group-hover:text-red-300 transition-colors duration-300">
+          {service.title}
+        </h3>
+        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+          {service.description}
+        </p>
+
+        {/* Feature pills */}
+        <div className="flex flex-wrap gap-2">
+          {service.features.map((feature, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 text-xs font-medium rounded-full transition-colors duration-200"
+              style={{ background: 'rgba(153,27,27,0.18)', color: '#fca5a5', border: '1px solid rgba(153,27,27,0.35)' }}
+            >
+              {feature}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -95,18 +186,27 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative py-10 lg:py-14 bg-gray-50"
+      className="relative py-10 lg:py-14 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #0f0f1a 0%, #14111f 50%, #0d0d1a 100%)' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Subtle radial accent */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(153,27,27,0.12) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div ref={titleRef} className="text-center mb-8">
-          <span className="animate-item inline-block text-maroon text-sm font-semibold tracking-widest uppercase mb-4">
+        <div ref={titleRef} className="text-center mb-10">
+          <span className="animate-item inline-block text-red-400 text-sm font-semibold tracking-widest uppercase mb-4">
             Our Services
           </span>
-          <h2 className="animate-item font-display text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="animate-item font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             What We <span className="text-maroon">Offer</span>
           </h2>
-          <p className="animate-item text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="animate-item text-gray-400 text-lg max-w-2xl mx-auto">
             Comprehensive digital solutions designed to elevate your brand and drive results.
           </p>
         </div>
@@ -117,52 +217,7 @@ export default function Services() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="service-card group bg-white rounded-2xl overflow-hidden shadow-soft card-hover"
-            >
-              {/* Image */}
-              <div className="relative h-40 sm:h-48 overflow-hidden img-zoom">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-                {/* Icon badge */}
-                <div className="absolute top-4 left-4 w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-soft">
-                  <service.icon className="w-6 h-6 text-maroon" />
-                </div>
-
-                {/* Arrow button */}
-                <div className="absolute bottom-4 right-4 w-10 h-10 bg-maroon rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  <ArrowUpRight className="w-5 h-5 text-white" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-gray-900 mb-2 group-hover:text-maroon transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <div className="flex flex-wrap gap-2">
-                  {service.features.map((feature, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-maroon/5 text-maroon text-xs font-medium rounded-full"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <ServiceCard key={index} service={service} index={index} />
           ))}
         </div>
       </div>

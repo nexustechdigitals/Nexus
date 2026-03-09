@@ -178,22 +178,26 @@ const bentoLayouts: Record<Tab, { cols: number; rows: number }[]> = {
 };
 
 // "View All" bento: 4-col grid, 12 cards total
-const viewAllLayout: { cols: number; rows: number }[] = [
-  // websites (3)
-  { cols: 2, rows: 2 }, // wd0 – hero
-  { cols: 1, rows: 1 }, // wd1
-  { cols: 1, rows: 1 }, // wd2
-  // apps (3)
-  { cols: 1, rows: 2 }, // md0 – tall
-  { cols: 2, rows: 1 }, // md1
-  { cols: 2, rows: 1 }, // md3 — fills the 2-col remainder next to md0
-  // designs (6)
-  { cols: 1, rows: 1 },
-  { cols: 1, rows: 1 },
-  { cols: 1, rows: 1 },
-  { cols: 1, rows: 1 },
-  { cols: 1, rows: 1 },
-  { cols: 1, rows: 1 },
+// Layout (4 cols, each row = CELL_H px):
+//  Row 1-2: [wd0: 2×2] [wd1: 1×1] [wd2: 1×1]    (wd1 row1, wd2 row2 stacked)
+//  Row 3-4: [md0: 1×2] [md1: 2×1] [md3: 2×1]    (md1 row3, md3 row4 next to tall md0)
+//  Row 5-6: 6 equal design cards (3 per row)
+const viewAllLayout: { cols: number; rows: number; colStart?: number; rowStart?: number }[] = [
+  // websites
+  { cols: 2, rows: 2, colStart: 1, rowStart: 1 }, // wd0 – big hero
+  { cols: 1, rows: 1, colStart: 3, rowStart: 1 }, // wd1
+  { cols: 1, rows: 1, colStart: 4, rowStart: 1 }, // wd2
+  // apps – start fresh row so they don't mix with websites
+  { cols: 1, rows: 2, colStart: 1, rowStart: 3 }, // md0 – tall
+  { cols: 2, rows: 1, colStart: 2, rowStart: 3 }, // md1
+  { cols: 1, rows: 1, colStart: 4, rowStart: 3 }, // md3 extra
+  // designs – 2 rows of 3
+  { cols: 1, rows: 1, colStart: 2, rowStart: 4 }, // gd0
+  { cols: 1, rows: 1, colStart: 3, rowStart: 4 }, // gd1
+  { cols: 1, rows: 1, colStart: 4, rowStart: 4 }, // gd2
+  { cols: 1, rows: 1, colStart: 1, rowStart: 5 }, // gd4
+  { cols: 1, rows: 1, colStart: 2, rowStart: 5 }, // gd5
+  { cols: 1, rows: 1, colStart: 3, rowStart: 5 }, // gd6
 ];
 
 const CELL_H = 220; // base row height in px
@@ -366,12 +370,14 @@ export default function Portfolio() {
             style={{
               display: 'grid',
               gridTemplateColumns: `repeat(${gridCols}, 1fr)`,
-              gridAutoRows: `${CELL_H}px`,
+              gridTemplateRows: displayAll
+                ? `repeat(5, ${CELL_H}px)`   // 5 explicit rows for view-all
+                : `repeat(2, ${CELL_H}px)`,  // 2 rows for websites tab
               gap: '16px',
             }}
           >
             {projects.map((project, i) => {
-              const layout = layouts[i] ?? { cols: 1, rows: 1 };
+              const layout = (layouts[i] ?? { cols: 1, rows: 1 }) as { cols: number; rows: number; colStart?: number; rowStart?: number };
               const tabKey = allProjects.websites.find(p => p.id === project.id)
                 ? 'websites'
                 : allProjects.apps.find(p => p.id === project.id)
@@ -382,7 +388,10 @@ export default function Portfolio() {
                 <div
                   key={`${displayAll ? 'all' : displayed}-${project.id}`}
                   className="portfolio-item group relative rounded-2xl overflow-hidden shadow-md"
-                  style={{ gridColumn: `span ${layout.cols}`, gridRow: `span ${layout.rows}` }}
+                  style={{
+                    gridColumn: layout.colStart ? `${layout.colStart} / span ${layout.cols}` : `span ${layout.cols}`,
+                    gridRow: layout.rowStart ? `${layout.rowStart} / span ${layout.rows}` : `span ${layout.rows}`,
+                  }}
                 >
                   <img
                     src={project.image}

@@ -77,11 +77,11 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [current, setCurrent] = useState(0);
+  const innerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Responsive: 3 cards on lg+, 2 on sm+, 1 on mobile
+  // Responsive cards per view
   const [cardsPerView, setCardsPerView] = useState(() => {
     if (typeof window === 'undefined') return 3;
     if (window.innerWidth >= 1024) return 3;
@@ -100,32 +100,72 @@ export default function Testimonials() {
   }, []);
 
   const total = testimonials.length;
-  // Max position so last visible pair/single doesn't overshoot
-  const maxCurrent = Math.max(0, total - cardsPerView);
-  // Width of each card as percentage and translate step
   const cardWidthPct = 100 / cardsPerView;
-  const translatePct = current * cardWidthPct;
 
-  const goTo = useCallback((index: number) => {
-    setCurrent(Math.max(0, Math.min(index, maxCurrent)));
-  }, [maxCurrent]);
+  // We use a clone-based infinite loop:
+  // Clones: [last N clones] [real items] [first N clones]
+  // where N = cardsPerView
+  const cloneCount = cardsPerView;
+  const clonedBefore = testimonials.slice(-cloneCount);
+  const clonedAfter = testimonials.slice(0, cloneCount);
+  const allItems = [...clonedBefore, ...testimonials, ...clonedAfter];
+
+  // Real index starts at cloneCount (offset past the leading clones)
+  const [offset, setOffset] = useState(cloneCount); // index into allItems
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // When cloneCount changes (screen resize), reset position without animation
+  useEffect(() => {
+    setIsTransitioning(false);
+    setOffset(cloneCount);
+  }, [cloneCount]);
+
+  // After position jump (for seamless loop), re-enable transition
+  useEffect(() => {
+    if (!isTransitioning) {
+      const raf = requestAnimationFrame(() => setIsTransitioning(true));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isTransitioning]);
+
+  // After slide ends, check if we need to jump (for infinite loop)
+  const handleTransitionEnd = useCallback(() => {
+    // If we slid past the last real card into the after-clones
+    if (offset >= cloneCount + total) {
+      setIsTransitioning(false);
+      setOffset(cloneCount); // jump to first real card
+    }
+    // If we slid before the first real card into the before-clones
+    if (offset < cloneCount) {
+      setIsTransitioning(false);
+      setOffset(cloneCount + total - 1); // jump to last real card
+    }
+  }, [offset, cloneCount, total]);
 
   const next = useCallback(() => {
-    setCurrent(c => (c < maxCurrent ? c + 1 : 0));
-  }, [maxCurrent]);
+    setIsTransitioning(true);
+    setOffset(o => o + 1);
+  }, []);
 
   const prev = useCallback(() => {
-    setCurrent(c => (c > 0 ? c - 1 : maxCurrent));
-  }, [maxCurrent]);
+    setIsTransitioning(true);
+    setOffset(o => o - 1);
+  }, []);
 
   // Auto-slide every 4 s
   useEffect(() => {
     if (isPaused) return;
-    autoRef.current = setInterval(() => {
-      setCurrent(c => (c < maxCurrent ? c + 1 : 0));
-    }, 4000);
+    autoRef.current = setInterval(next, 4000);
     return () => { if (autoRef.current) clearInterval(autoRef.current); };
-  }, [isPaused, maxCurrent]);
+  }, [isPaused, next]);
+
+  // Dot index: which real card is centred (first visible real card)
+  const realIndex = ((offset - cloneCount) % total + total) % total;
+
+  const goTo = useCallback((i: number) => {
+    setIsTransitioning(true);
+    setOffset(cloneCount + i);
+  }, [cloneCount]);
 
   // Entrance animation
   useEffect(() => {
@@ -160,6 +200,7 @@ export default function Testimonials() {
     return () => ctx.revert();
   }, []);
 
+  const translatePct = offset * cardWidthPct;
 
   return (
     <section
@@ -202,7 +243,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Carousel — 2 cards at a time on sm+, 1 on mobile */}
+        {/* Carousel — infinite clone-based loop */}
         <div
           ref={trackRef}
           className="relative"
@@ -212,12 +253,17 @@ export default function Testimonials() {
           {/* Cards container */}
           <div className="overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${translatePct}%)` }}
+              ref={innerRef}
+              className="flex"
+              style={{
+                transform: `translateX(-${translatePct}%)`,
+                transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none',
+              }}
+              onTransitionEnd={handleTransitionEnd}
             >
-              {testimonials.map((t) => (
+              {allItems.map((t, idx) => (
                 <div
-                  key={t.id}
+                  key={`${t.id}-${idx}`}
                   className="flex-shrink-0 px-2"
                   style={{ width: `${cardWidthPct}%` }}
                 >
@@ -292,14 +338,14 @@ export default function Testimonials() {
           </button>
         </div>
 
-        {/* Dot nav — represents each slide position */}
+        {/* Dot nav — one dot per real testimonial */}
         <div className="flex items-center justify-center gap-2 mt-6">
-          {Array.from({ length: maxCurrent + 1 }).map((_, i) => (
+          {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Position ${i + 1}`}
-              className={`transition-all duration-300 rounded-full ${i === current
+              aria-label={`Go to testimonial ${i + 1}`}
+              className={`transition-all duration-300 rounded-full ${i === realIndex
                 ? 'w-6 h-1.5 bg-maroon'
                 : 'w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400'
                 }`}
