@@ -69,7 +69,7 @@ const allProjects: Record<Tab, Project[]> = {
       image: md0,
       tags: ['React Native', 'Firebase'],
       span: 'col-span-1 row-span-2',
-      aspectRatio: '9/16', // portrait phone screenshot
+      aspectRatio: '16/9', // portrait phone screenshot
     },
     {
       id: 6,
@@ -162,9 +162,9 @@ const bentoLayouts: Record<Tab, { cols: number; rows: number }[]> = {
   ],
   // 3 cards → 3-col grid: [tall(1×2), wide(2×1), wide(2×1)]
   apps: [
-    { cols: 1, rows: 2 },
-    { cols: 2, rows: 1 },
-    { cols: 2, rows: 1 },
+    { cols: 2, rows: 2 },
+    { cols: 1, rows: 1 },
+    { cols: 1, rows: 1 },
   ],
   // 6 cards → 3-col grid: all equal (1×1)
   designs: [
@@ -188,16 +188,16 @@ const viewAllLayout: { cols: number; rows: number; colStart?: number; rowStart?:
   { cols: 1, rows: 1, colStart: 3, rowStart: 1 }, // wd1
   { cols: 1, rows: 1, colStart: 4, rowStart: 1 }, // wd2
   // apps – start fresh row so they don't mix with websites
-  { cols: 1, rows: 2, colStart: 1, rowStart: 3 }, // md0 – tall
-  { cols: 2, rows: 1, colStart: 2, rowStart: 3 }, // md1
-  { cols: 1, rows: 1, colStart: 4, rowStart: 3 }, // md3 extra
+  { cols: 1, rows: 1, colStart: 3, rowStart: 3 }, // md0 – tall
+  { cols: 1, rows: 1, colStart: 2, rowStart: 3 }, // md1
+  { cols: 1, rows: 1, colStart: 3, rowStart: 2 }, // md3 extra
   // designs – 2 rows of 3
   { cols: 1, rows: 1, colStart: 2, rowStart: 4 }, // gd0
   { cols: 1, rows: 1, colStart: 3, rowStart: 4 }, // gd1
-  { cols: 1, rows: 1, colStart: 4, rowStart: 4 }, // gd2
-  { cols: 1, rows: 1, colStart: 1, rowStart: 5 }, // gd4
-  { cols: 1, rows: 1, colStart: 2, rowStart: 5 }, // gd5
-  { cols: 1, rows: 1, colStart: 3, rowStart: 5 }, // gd6
+  { cols: 1, rows: 2, colStart: 4, rowStart: 2 }, // gd2
+  { cols: 1, rows: 2, colStart: 1, rowStart: 3 }, // gd4
+  { cols: 1, rows: 1, colStart: 4, rowStart: 4 }, // gd5
+  { cols: 1, rows: 4, colStart: 1, rowStart: 5 }, // gd6
 ];
 
 const CELL_H = 220; // base row height in px

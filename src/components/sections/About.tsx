@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Target, Lightbulb, Users, Code2, Palette } from 'lucide-react';
+import aboutimg from '../../assets/img/portfolio/gd0.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -148,7 +149,7 @@ export default function About() {
               {/* Main image */}
               <div className="relative bg-white rounded-2xl shadow-soft-lg p-6 overflow-hidden">
                 <img
-                  src="/portfolio/portfolio-1.png"
+                  src={aboutimg}
                   alt="Our Work"
                   className="w-full h-full object-cover rounded-xl"
                 />

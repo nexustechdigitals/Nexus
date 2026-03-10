@@ -3,6 +3,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Monitor, Palette, Smartphone, ArrowUpRight } from 'lucide-react';
 
+import web1 from '../../assets/img/portfolio/wd2.png';
+import web2 from '../../assets/img/portfolio/wd4.png';
+import app1 from '../../assets/img/portfolio/md1.jpg';
+import app2 from '../../assets/img/portfolio/md3.jpg';
+import design1 from '../../assets/img/portfolio/gd2.jpg';
+import design2 from '../../assets/img/portfolio/gd5.jpg';
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface Service {
@@ -18,22 +25,22 @@ const services: Service[] = [
     icon: Monitor,
     title: 'Website Development',
     description: 'Custom websites tailored to your brand and business goals.',
-    images: ['/portfolio/portfolio-1.jpg', '/portfolio/portfolio-1.1.jpg'],
+    images: [web1, web2],
     features: ['Responsive Design', 'SEO Optimized', 'Fast Loading'],
   },
   {
     icon: Smartphone,
     title: 'App Development',
-    description: 'Native and cross-platform mobile applications.',
-    images: ['/portfolio/portfolio-2.jpg', '/portfolio/portfolio-2.1.jpg'],
-    features: ['iOS & Android', 'User Friendly', 'Scalable'],
+    description: 'Native and cross-platform mobile applications with best user experience.',
+    images: [app1, app2],
+    features: ['iOS & Android', 'User Friendly', 'Scalable', 'responsive design'],
   },
   {
     icon: Palette,
     title: 'Graphic Designing',
     description: 'Stunning visuals that capture attention and communicate.',
-    images: ['/portfolio/portfolio-3.jpg', '/portfolio/portfolio-3.1.jpg'],
-    features: ['Brand Identity', 'Social Media', 'Marketing'],
+    images: [design1, design2],
+    features: ['Brand Identity', 'Social Media', 'Marketing', 'Unique Design'],
   },
 ];
 

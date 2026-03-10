@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
     e.preventDefault();
     if (message.trim()) {
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/1234567890?text=${encodedMessage}`, '_blank');
+      window.open(`https://wa.me/9423399577?text=${encodedMessage}`, '_blank');
       setMessage('');
       setIsOpen(false);
     }
@@ -30,9 +30,8 @@ export default function WhatsAppButton() {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-[90] w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg flex items-center justify-center transition-all duration-500 hover:scale-110 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-        }`}
+        className={`fixed bottom-6 right-6 z-[90] w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg flex items-center justify-center transition-all duration-500 hover:scale-110 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+          }`}
         style={{
           boxShadow: '0 4px 20px rgba(37, 211, 102, 0.4)',
         }}
@@ -43,11 +42,10 @@ export default function WhatsAppButton() {
 
       {/* Chat Widget */}
       <div
-        className={`fixed bottom-24 right-6 z-[89] w-80 bg-white rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden ${
-          isOpen
+        className={`fixed bottom-24 right-6 z-[89] w-80 bg-white rounded-2xl shadow-2xl transition-all duration-500 overflow-hidden ${isOpen
             ? 'translate-y-0 opacity-100 pointer-events-auto'
             : 'translate-y-10 opacity-0 pointer-events-none'
-        }`}
+          }`}
       >
         {/* Header */}
         <div className="bg-[#25D366] p-4 flex items-center gap-3">
