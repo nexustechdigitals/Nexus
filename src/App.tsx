@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navigation from './components/sections/Navigation';
 import LoadingScreen from './components/sections/LoadingScreen';
+import { useIsMobile } from './hooks/use-mobile';
+import MobileApp from './components/mobile/MobileApp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +27,7 @@ const SectionFallback = () => (
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const mainRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1500);
@@ -32,13 +35,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!isLoading && mainRef.current) {
+    if (!isLoading && mainRef.current && !isMobile) {
       const ctx = gsap.context(() => { ScrollTrigger.refresh(); }, mainRef);
       return () => ctx.revert();
     }
-  }, [isLoading]);
+  }, [isLoading, isMobile]);
 
   if (isLoading) return <LoadingScreen />;
+
+  if (isMobile) return <MobileApp />;
 
   return (
     <div ref={mainRef} className="relative min-h-screen bg-white overflow-x-hidden">
