@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Monitor, Palette, Smartphone, ArrowUpRight } from 'lucide-react';
 
 import web1 from '../../assets/img/portfolio/wd2.png';
-import web2 from '../../assets/img/portfolio/wd4.png';
+import web2 from '../../assets/img/portfolio/wd1.png';
 import app1 from '../../assets/img/portfolio/md1.jpg';
 import app2 from '../../assets/img/portfolio/md3.jpg';
 import design1 from '../../assets/img/portfolio/gd2.jpg';

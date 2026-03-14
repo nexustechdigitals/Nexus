@@ -5,7 +5,7 @@ import { ExternalLink, ChevronRight, Globe, Smartphone, Palette } from 'lucide-r
 
 // ── Website images ─────────────────────────────────────────────────
 import wd0 from '../../assets/img/portfolio/wd0.png';
-import wd1 from '../../assets/img/portfolio/wd1.jpg';
+import wd1 from '../../assets/img/portfolio/wd1.png';
 import wd2 from '../../assets/img/portfolio/wd2.png';
 
 // ── App / Mobile images ────────────────────────────────────────────

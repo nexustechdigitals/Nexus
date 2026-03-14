@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
-import wd1 from '../../assets/img/portfolio/wd1.jpg';
+import wd1 from '../../assets/img/portfolio/wd1.png';
 
 export default function MobileAbout() {
   const [openId, setOpenId] = useState<number | null>(1);

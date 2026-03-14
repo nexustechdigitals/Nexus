@@ -1,0 +1,43 @@
+[36mvite v7.3.0 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 1738 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                     [39m[1m[2m    2.18 kB[22m[1m[22m[2m │ gzip:  0.90 kB[22m
+[2mdist/[22m[32massets/gd5-C7gHScAM.jpg        [39m[1m[2m   50.08 kB[22m[1m[22m
+[2mdist/[22m[32massets/md1-BWMXOeRB.jpg        [39m[1m[2m   50.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/md3-hAFM02Nx.jpg        [39m[1m[2m   55.16 kB[22m[1m[22m
+[2mdist/[22m[32massets/gd4-BZYIBxNd.jpg        [39m[1m[2m   61.23 kB[22m[1m[22m
+[2mdist/[22m[32massets/gd2-KMckK6zJ.jpg        [39m[1m[2m   64.04 kB[22m[1m[22m
+[2mdist/[22m[32massets/md0-CA8fTG10.jpg        [39m[1m[2m   69.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/gd1-BQSJYbPX.jpg        [39m[1m[2m  104.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/gd0-BoTK9hhE.jpg        [39m[1m[2m  107.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/gd6-DmCKE3tL.jpg        [39m[1m[2m  133.08 kB[22m[1m[22m
+[2mdist/[22m[32massets/wd2-kRZ0oFHq.png        [39m[1m[2m1,189.52 kB[22m[1m[22m
+[2mdist/[22m[32massets/wd0-BNYtpGJz.png        [39m[1m[2m2,524.25 kB[22m[1m[22m
+[2mdist/[22m[32massets/wd1-Dv6_d4lu.png        [39m[1m[2m3,682.23 kB[22m[1m[22m
+[2mdist/[22m[35massets/index-9nyeIT6N.css      [39m[1m[2m   55.43 kB[22m[1m[22m[2m │ gzip:  9.65 kB[22m
+[2mdist/[22m[36mjs/ui-DnyFFNNC.js              [39m[1m[2m    0.03 kB[22m[1m[22m[2m │ gzip:  0.05 kB[22m
+[2mdist/[22m[36mjs/forms-DnyFFNNC.js           [39m[1m[2m    0.03 kB[22m[1m[22m[2m │ gzip:  0.05 kB[22m
+[2mdist/[22m[36mjs/utilities-DnyFFNNC.js       [39m[1m[2m    0.03 kB[22m[1m[22m[2m │ gzip:  0.05 kB[22m
+[2mdist/[22m[36mjs/gd0-BuJbdBW4.js             [39m[1m[2m    0.09 kB[22m[1m[22m[2m │ gzip:  0.10 kB[22m
+[2mdist/[22m[36mjs/chevron-right-BQK5euhf.js   [39m[1m[2m    0.13 kB[22m[1m[22m[2m │ gzip:  0.14 kB[22m
+[2mdist/[22m[36mjs/gd5-DV6AKgRN.js             [39m[1m[2m    0.16 kB[22m[1m[22m[2m │ gzip:  0.13 kB[22m
+[2mdist/[22m[36mjs/gd6-ChqiySbv.js             [39m[1m[2m    0.23 kB[22m[1m[22m[2m │ gzip:  0.15 kB[22m
+[2mdist/[22m[36mjs/send-DQi-P62W.js            [39m[1m[2m    0.29 kB[22m[1m[22m[2m │ gzip:  0.23 kB[22m
+[2mdist/[22m[36mjs/palette-qfEmS35m.js         [39m[1m[2m    0.51 kB[22m[1m[22m[2m │ gzip:  0.28 kB[22m
+[2mdist/[22m[36mjs/WhatsAppButton-G1T1a0ew.js  [39m[1m[2m    4.20 kB[22m[1m[22m[2m │ gzip:  1.54 kB[22m
+[2mdist/[22m[36mjs/HowItWorks-DHfkPw_i.js      [39m[1m[2m    4.97 kB[22m[1m[22m[2m │ gzip:  1.63 kB[22m
+[2mdist/[22m[36mjs/Footer-DnR9WJ65.js          [39m[1m[2m    6.26 kB[22m[1m[22m[2m │ gzip:  1.89 kB[22m
+[2mdist/[22m[36mjs/Services-DrzfRLz5.js        [39m[1m[2m    6.82 kB[22m[1m[22m[2m │ gzip:  2.42 kB[22m
+[2mdist/[22m[36mjs/About-D0o6BUoT.js           [39m[1m[2m    7.08 kB[22m[1m[22m[2m │ gzip:  2.30 kB[22m
+[2mdist/[22m[36mjs/Hero-YQKpG_R-.js            [39m[1m[2m    8.85 kB[22m[1m[22m[2m │ gzip:  2.60 kB[22m
+[2mdist/[22m[36mjs/FAQ-C6k1ehOv.js             [39m[1m[2m    9.39 kB[22m[1m[22m[2m │ gzip:  3.50 kB[22m
+[2mdist/[22m[36mjs/Contact-CkUhu9Vy.js         [39m[1m[2m   10.42 kB[22m[1m[22m[2m │ gzip:  2.48 kB[22m
+[2mdist/[22m[36mjs/vendor-Dh3zDKDA.js          [39m[1m[2m   11.21 kB[22m[1m[22m[2m │ gzip:  4.03 kB[22m
+[2mdist/[22m[36mjs/Testimonials-BS76WAgX.js    [39m[1m[2m   13.25 kB[22m[1m[22m[2m │ gzip:  3.88 kB[22m
+[2mdist/[22m[36mjs/Portfolio-BtxhqDPB.js       [39m[1m[2m   16.37 kB[22m[1m[22m[2m │ gzip:  3.89 kB[22m
+[2mdist/[22m[36mjs/gsap-DDlvirwQ.js            [39m[1m[2m   69.89 kB[22m[1m[22m[2m │ gzip: 27.48 kB[22m
+[2mdist/[22m[36mjs/index-BVzI2LmR.js           [39m[1m[2m  103.64 kB[22m[1m[22m[2m │ gzip: 31.72 kB[22m
+[2mdist/[22m[36mjs/three-Bu4d4s7v.js           [39m[1m[2m  182.18 kB[22m[1m[22m[2m │ gzip: 57.47 kB[22m
+[32m✓ built in 6.02s[39m
