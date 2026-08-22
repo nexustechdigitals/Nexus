@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
     e.preventDefault();
     if (message.trim()) {
       const encodedMessage = encodeURIComponent(message);
-      window.open(`https://wa.me/9423399577?text=${encodedMessage}`, '_blank');
+      window.open(`https://wa.me/7498593746?text=${encodedMessage}`, '_blank');
       setMessage('');
       setIsOpen(false);
     }
